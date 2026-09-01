@@ -1,0 +1,10 @@
+# Ví dụ nguyên văn từ 03-gtm-opensource-strategy.md mục 4.2. Dùng thẳng file
+# problem.yaml do pa-interview-agent/cli.py sinh ra trong thực tế — file này
+# chỉ để chạy thử pa-harness độc lập, không cần chạy Interview Agent trước.
+problem_fingerprint:
+  domain: "document-ocr"
+  language: "vi"
+  document_type: "table-heavy"
+  quality_target: 0.96
+  throughput_target: "batch-offline"
+  budget_constraint_usd_per_unit: null

@@ -1,0 +1,14 @@
+# Baseline để so sánh với vn-ocr-native-fallback-v1: chỉ OCR 1 bước, không có
+# confidence routing/VLM fallback -> nhanh hơn, rẻ hơn, nhưng quality thấp
+# hơn khi gặp trang khó (noise_rate cao hơn mặc định để mô phỏng model nhẹ
+# hơn). Dùng cặp pipeline này để test cross-pipeline agreement/Bradley-Terry
+# thực sự phân biệt được 2 candidate khác biệt về quality.
+pipeline_id: "vn-ocr-baseline-v1"
+pipeline_version: "0.1"
+steps:
+  - component: pdf-native-parser
+    config: {}
+  - component: layout-detector
+    config: {model: "doclayout-yolo"}
+  - component: ocr-engine
+    config: {model: "paddleocr-vi-lite", lang: "vi", noise_rate: 0.12}

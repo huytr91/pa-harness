@@ -1,0 +1,11 @@
+HOA DON BAN HANG
+So: 000124
+Ngay: 2026-08-02
+
+STT	Ten hang hoa	So luong	Don gia	Thanh tien
+1	Ban phim	5	250000	1250000
+2	Chuot may tinh	5	150000	750000
+
+Tong cong: 2000000 VND
+Khach hang: Tran Thi B
+Dia chi: 45 Nguyen Trai, Da Nang

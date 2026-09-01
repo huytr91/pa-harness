@@ -1,0 +1,3 @@
+label_hint=industrial_pump_category_A
+resolution=1024x768
+notes=mock sample for vision-resnet/clip ensemble benchmark

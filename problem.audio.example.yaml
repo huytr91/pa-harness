@@ -1,0 +1,7 @@
+# Ví dụ Problem Fingerprint — domain audio-transcription (BRD: đa domain, không chỉ OCR)
+problem_fingerprint:
+  domain: "audio-transcription"
+  language: "vi"
+  quality_target: 0.92
+  throughput_target: "batch-offline"
+  budget_constraint_usd_per_unit: null

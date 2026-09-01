@@ -1,0 +1,6 @@
+# Ví dụ Problem Fingerprint — domain image-classification
+problem_fingerprint:
+  domain: "image-classification"
+  quality_target: 0.90
+  throughput_target: "batch-offline"
+  budget_constraint_usd_per_unit: null

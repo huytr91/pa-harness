@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: pa-harness
+      - uses: actions/checkout@v4
+        with:
+          repository: huytr91/pa-adapters
+          path: pa-adapters
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e pa-adapters
+      - run: pip install -r pa-harness/requirements.txt
+        env:
+          PIP_NO_DEPS: "1"
+      - run: pip install pydantic pyyaml psutil duckdb pytest
+      - working-directory: pa-harness
+        run: python -m pytest test_quality_signals.py -q

@@ -1,0 +1,15 @@
+# Ví dụ nguyên văn từ 03-gtm-opensource-strategy.md mục 4.2 — pipeline có
+# confidence routing + VLM fallback cho trường hợp OCR không chắc chắn.
+pipeline_id: "vn-ocr-native-fallback-v1"
+pipeline_version: "0.1"
+steps:
+  - component: pdf-native-parser
+    config: {}
+  - component: layout-detector
+    config: {model: "doclayout-yolo"}
+  - component: ocr-engine
+    config: {model: "paddleocr-vi", lang: "vi"}
+  - component: confidence-router
+    config: {threshold: 0.85}
+  - component: vlm-fallback
+    config: {model: "qwen3-vl-8b", trigger: "low_confidence"}

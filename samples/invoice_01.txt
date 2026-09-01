@@ -1,0 +1,12 @@
+HOA DON BAN HANG
+So: 000123
+Ngay: 2026-08-01
+
+STT	Ten hang hoa	So luong	Don gia	Thanh tien
+1	Giay A4	10	50000	500000
+2	But bi	20	5000	100000
+3	Muc in	2	300000	600000
+
+Tong cong: 1200000 VND
+Khach hang: Nguyen Van A
+Dia chi: 123 Le Loi, Ha Noi
