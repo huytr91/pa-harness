@@ -19,6 +19,7 @@ import sys
 import pa_adapters  # noqa: F401 — register builtin adapters
 
 from benchmark_engine import run_experiment
+from contribute import export_contribution_bundle
 from pipeline_loader import load_pipeline, load_problem
 from storage import connect, rank_by_latency
 
@@ -104,7 +105,44 @@ def build_parser() -> argparse.ArgumentParser:
     query_p.add_argument("--limit", type=int, default=20)
     query_p.set_defaults(func=_cmd_query)
 
+    contrib_p = sub.add_parser(
+        "contribute",
+        help="Opt-in export benchmark evidence for community (pipeline metrics only)",
+    )
+    contrib_sub = contrib_p.add_subparsers(dest="contrib_command", required=True)
+
+    export_p = contrib_sub.add_parser(
+        "export",
+        help="Export contribution bundle JSON — no notes, samples, or AI agent data",
+    )
+    export_p.add_argument("--db", default="benchmarks.duckdb")
+    export_p.add_argument("--experiment-id", required=True)
+    export_p.add_argument("--problem", required=True, help="problem.yaml used for the run")
+    export_p.add_argument("--pipelines", required=True, nargs="+", help="pipeline.yaml files used")
+    export_p.add_argument("--out", default="contribution.json")
+    export_p.add_argument(
+        "--i-agree-to-terms",
+        action="store_true",
+        help="Required: ODC-BY-1.0, pipeline benchmark metrics only (see pa-schema contribution-privacy)",
+    )
+    export_p.set_defaults(func=_cmd_contribute_export)
+
     return parser
+
+
+def _cmd_contribute_export(args: argparse.Namespace) -> None:
+    path = export_contribution_bundle(
+        db_path=args.db,
+        experiment_id=args.experiment_id,
+        problem_path=args.problem,
+        pipeline_paths=args.pipelines,
+        out_path=args.out,
+        terms_accepted=args.i_agree_to_terms,
+    )
+    print(f"=== pa-harness contribute export ===")
+    print(f"Wrote {path}")
+    print("Pipeline benchmark evidence only — NOT for AI interview/architecture agents.")
+    print("Upload API: coming soon. For now, share bundle only via explicit opt-in channels.")
 
 
 def main() -> None:
