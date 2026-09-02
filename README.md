@@ -1,11 +1,23 @@
 # pa-harness
 
-**Local benchmark engine** for Pipeline Architect — run pipelines on your machine,
+**Local benchmark engine** for Pipeline Architect — run **multi-domain** AI pipelines on your machine,
 measure latency/RAM, infer relative quality (Bradley-Terry), write observations to DuckDB.
+
+Domains are selected via `problem_fingerprint.domain` (OCR, audio, vision, …) — not hardcoded to OCR.
 
 Part of [Pipeline Architect](https://github.com/huytr91/pipeline-architect) (MIT).
 
 **No API keys required.**
+
+## Domains (examples in repo)
+
+| `domain` | Problem file | Notes |
+|----------|--------------|--------|
+| `document-ocr` | `problem.example.yaml` | First reference vertical; sample pipelines in `pipelines/` |
+| `audio-transcription` | `problem.audio.example.yaml` | Mock ASR components via pa-adapters |
+| `image-classification` | `problem.image.example.yaml` | Mock vision components via pa-adapters |
+
+See [multi-domain](https://github.com/huytr91/pa-schema/blob/main/docs/multi-domain.md).
 
 ## Install
 
@@ -21,7 +33,7 @@ pip install -r requirements.txt
 # pip install -e ../pa-adapters && pip install -e .
 ```
 
-## Quick start
+## Quick start (document-ocr — reference vertical)
 
 ```bash
 python cli.py run \
@@ -33,6 +45,8 @@ python cli.py run \
 
 python cli.py query --db benchmarks.duckdb --min-quality 0.4
 ```
+
+Other domains: point `--problem` at `problem.audio.example.yaml` or `problem.image.example.yaml` and supply matching `pipeline.yaml` definitions (mock components in pa-adapters).
 
 ## What it measures
 
@@ -46,8 +60,8 @@ Hardware fingerprint is **auto-detected** — never self-reported.
 
 ## Mock vs real adapters
 
-Built-in components come from [pa-adapters](https://github.com/huytr91/pa-adapters) (`builtin` mocks).
-Replace with real OCR/parser adapters via `@register` — see pa-adapters README.
+Built-in components come from [pa-adapters](https://github.com/huytr91/pa-adapters) (`builtin` mocks for OCR, ASR, vision, …).
+Add real tools (PaddleOCR, Whisper, …) via `@register` — see pa-adapters README.
 
 ## Anti-fraud defaults
 
@@ -58,7 +72,7 @@ Replace with real OCR/parser adapters via `@register` — see pa-adapters README
 ## Related repos
 
 - [pa-schema](https://github.com/huytr91/pa-schema) — Observation + Solution Pipeline Packet JSON Schema
-- [pa-adapters](https://github.com/huytr91/pa-adapters) — component wrappers
+- [pa-adapters](https://github.com/huytr91/pa-adapters) — component wrappers (all domains)
 
 ## Contributing
 
