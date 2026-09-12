@@ -1,0 +1,11 @@
+# Baseline vision pipeline: image loader -> classifier -> label mapper.
+# Mock components via pa-adapters for offline benchmarking.
+pipeline_id: "image-classification-baseline-v1"
+pipeline_version: "0.1"
+steps:
+  - component: image-loader
+    config: {}
+  - component: image-classifier
+    config: {model: "resnet-vi-lite", top_k: 5}
+  - component: label-mapper
+    config: {label_set: "product-categories"}
