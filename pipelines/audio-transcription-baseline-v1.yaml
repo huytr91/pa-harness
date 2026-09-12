@@ -1,0 +1,11 @@
+# Baseline ASR pipeline: audio loader -> speech-to-text -> post-processing.
+# Mock components via pa-adapters for offline benchmarking.
+pipeline_id: "audio-transcription-baseline-v1"
+pipeline_version: "0.1"
+steps:
+  - component: audio-loader
+    config: {}
+  - component: speech-to-text
+    config: {model: "whisper-vi-lite", lang: "vi"}
+  - component: text-postprocessor
+    config: {normalize: true}

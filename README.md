@@ -33,7 +33,9 @@ pip install -r requirements.txt
 # pip install -e ../pa-adapters && pip install -e .
 ```
 
-## Quick start (document-ocr — reference vertical)
+## Quick start
+
+### document-ocr (reference vertical)
 
 ```bash
 python cli.py run \
@@ -46,7 +48,31 @@ python cli.py run \
 python cli.py query --db benchmarks.duckdb --min-quality 0.4
 ```
 
-Other domains: point `--problem` at `problem.audio.example.yaml` or `problem.image.example.yaml` and supply matching `pipeline.yaml` definitions (mock components in pa-adapters).
+### audio-transcription
+
+```bash
+python cli.py run \
+  --problem problem.audio.example.yaml \
+  --pipelines pipelines/audio-transcription-baseline-v1.yaml \
+  --samples-dir samples \
+  --db benchmarks.duckdb \
+  --runs 5
+
+python cli.py query --db benchmarks.duckdb --min-quality 0.4
+```
+
+### image-classification
+
+```bash
+python cli.py run \
+  --problem problem.image.example.yaml \
+  --pipelines pipelines/image-classification-baseline-v1.yaml \
+  --samples-dir samples \
+  --db benchmarks.duckdb \
+  --runs 5
+
+python cli.py query --db benchmarks.duckdb --min-quality 0.4
+```
 
 ## What it measures
 

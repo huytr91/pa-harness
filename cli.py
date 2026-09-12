@@ -90,7 +90,29 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="pa-harness")
     sub = parser.add_subparsers(dest="command", required=True)
 
-    run_p = sub.add_parser("run", help="Chạy benchmark 1+ pipeline candidate trên 1 problem")
+    run_p = sub.add_parser(
+        "run",
+        help="Chạy benchmark 1+ pipeline candidate trên 1 problem",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=(
+            "examples:\n"
+            "  # document-ocr (reference vertical)\n"
+            "  python cli.py run --problem problem.example.yaml \\\n"
+            "    --pipelines pipelines/vn-ocr-native-fallback-v1.yaml \\\n"
+            "             pipelines/vn-ocr-baseline-v1.yaml \\\n"
+            "    --samples-dir samples --db benchmarks.duckdb --runs 5\n"
+            "\n"
+            "  # audio-transcription\n"
+            "  python cli.py run --problem problem.audio.example.yaml \\\n"
+            "    --pipelines pipelines/audio-transcription-baseline-v1.yaml \\\n"
+            "    --samples-dir samples --db benchmarks.duckdb --runs 5\n"
+            "\n"
+            "  # image-classification\n"
+            "  python cli.py run --problem problem.image.example.yaml \\\n"
+            "    --pipelines pipelines/image-classification-baseline-v1.yaml \\\n"
+            "    --samples-dir samples --db benchmarks.duckdb --runs 5"
+        ),
+    )
     run_p.add_argument("--problem", required=True, help="Đường dẫn problem.yaml")
     run_p.add_argument("--pipelines", required=True, nargs="+", help="1+ đường dẫn pipeline.yaml")
     run_p.add_argument("--samples-dir", required=True, help="Thư mục chứa sample documents")
