@@ -48,6 +48,25 @@ python cli.py query --db benchmarks.duckdb --min-quality 0.4
 
 Other domains: point `--problem` at `problem.audio.example.yaml` or `problem.image.example.yaml` and supply matching `pipeline.yaml` definitions (mock components in pa-adapters).
 
+## SAMPLE beachhead results (L2 operational)
+
+Published metrics only (no PDFs): [`results/sample-ocr-vi/`](results/sample-ocr-vi/).
+
+- **96 runs** = 16 multi-page VI PDFs × 3 × `vn-pdf-extract-lite-v1` / `vn-pdf-extract-deep-v1`
+- Measures latency / RAM / success / extracted `text_chars` via **pypdf text-layer** (not scan OCR)
+- Relative quality only — no ground-truth CER
+
+```bash
+# Requires local SAMPLE PDFs (not in git) +: pip install 'pa-adapters[pdf]'
+python cli.py run \
+  --problem problem.ocr-sample.yaml \
+  --pipelines pipelines/vn-pdf-extract-lite-v1.yaml pipelines/vn-pdf-extract-deep-v1.yaml \
+  --samples-dir ../SAMPLE \
+  --db benchmarks-sample-full.duckdb \
+  --runs 3
+python export_sample_results.py benchmarks-sample-full.duckdb results/sample-ocr-vi
+```
+
 ## What it measures
 
 | Signal | Method |

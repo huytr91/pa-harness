@@ -1,0 +1,13 @@
+# Problem fingerprint for SAMPLE/ PDF beachhead (scan + table + text, multi-page).
+problem_fingerprint:
+  domain: document-ocr
+  language: vi
+  document_type: mixed-scan-table
+  quality_target: 0.9
+  throughput_target: batch-offline
+  budget_constraint_usd_per_unit: null
+  notes: >
+    Workload SAMPLE/: 16 PDF nhiều trang (BCTC, BCTN, thông tư, sách scan).
+    Lẫn bảng biểu + text. Đo operational trên máy user (latency/RAM/success/text_chars).
+    Chưa có ground truth — không tuyên bố accuracy tuyệt đối.
+    workload_declaration: sample_source=SAMPLE folder, sample_size=16.

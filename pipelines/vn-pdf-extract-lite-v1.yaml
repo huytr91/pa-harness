@@ -1,0 +1,11 @@
+# Candidate A — extract text layer nhanh (pypdf), giới hạn trang.
+# Phù hợp PDF có text layer; scan thuần sẽ ra ít ký tự (vẫn đo được ops).
+pipeline_id: vn-pdf-extract-lite-v1
+pipeline_version: "0.1"
+steps:
+  - component: pdf-native-parser
+    config:
+      max_pages: 5
+      engine: pypdf
+  - component: pdf-text-normalize
+    config: {}

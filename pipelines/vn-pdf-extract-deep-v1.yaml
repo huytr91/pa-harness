@@ -1,0 +1,12 @@
+# Candidate B — extract sâu hơn (nhiều trang hơn) → chậm/RAM hơn trên cùng SAMPLE.
+pipeline_id: vn-pdf-extract-deep-v1
+pipeline_version: "0.1"
+steps:
+  - component: pdf-native-parser
+    config:
+      max_pages: 20
+      engine: pypdf
+  - component: pdf-text-normalize
+    config: {}
+  - component: layout-hint
+    config: {}
