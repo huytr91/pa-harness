@@ -1,0 +1,11 @@
+problem_fingerprint:
+  domain: document-ocr
+  language: vi
+  document_type: mixed_pdf_batch
+  quality_target: 0.85
+  throughput_target: batch-offline
+  budget_constraint_usd_per_unit: null
+  notes: >
+    Case 003: mixed batch (regulation + financial + scan textbook + corporate).
+    Focus: success rate, latency spread, peak RAM stability across file types.
+    No ground truth. PDFs local only.

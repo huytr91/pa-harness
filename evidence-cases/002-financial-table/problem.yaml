@@ -1,0 +1,11 @@
+problem_fingerprint:
+  domain: document-ocr
+  language: vi
+  document_type: financial_report
+  quality_target: 0.9
+  throughput_target: batch-offline
+  budget_constraint_usd_per_unit: null
+  notes: >
+    Case 002: Vietnamese financial statements / BCTC with tables.
+    Ops measure via pypdf text-layer extract — table reconstruction not claimed.
+    Compare probe vs lite vs deep page budgets on same files.

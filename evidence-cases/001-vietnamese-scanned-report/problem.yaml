@@ -1,0 +1,12 @@
+problem_fingerprint:
+  domain: document-ocr
+  language: vi
+  document_type: scanned_report
+  quality_target: 0.9
+  throughput_target: batch-offline
+  budget_constraint_usd_per_unit: null
+  notes: >
+    Case 001 flagship: multi-page Vietnamese annual/scanned reports.
+    Measure ops (latency/RAM/success/text_chars) on contributor machine.
+    No ground-truth CER — quality is relative cross-pipeline agreement only.
+    PDFs stay local (not published).

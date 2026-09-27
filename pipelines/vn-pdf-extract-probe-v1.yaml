@@ -1,0 +1,10 @@
+# Candidate C — fast probe (few pages). Cheap prior check before deep extract.
+pipeline_id: vn-pdf-extract-probe-v1
+pipeline_version: "0.1"
+steps:
+  - component: pdf-native-parser
+    config:
+      max_pages: 2
+      engine: pypdf
+  - component: pdf-text-normalize
+    config: {}
